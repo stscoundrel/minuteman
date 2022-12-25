@@ -28,6 +28,43 @@ class TestMinutemanCore(TestCase):
             ),
         ]
 
-        for args, expected in test_cases:
-            with self.subTest(args=args, expected=expected):
-                self.assertEqual(parse(args), expected)
+        for expression, expected in test_cases:
+            with self.subTest(expression=expression, expected=expected):
+                self.assertEqual(parse(expression), expected)
+
+    def test_parses_time_transforms_with_rounding(self):
+        test_cases = [
+            (
+                "5 minutes a day in 1 year in days",
+                2,
+                "1.27 days",
+            ),
+            (
+                "1 hour a week in a year in days",
+                3,
+                "2.167 days",
+            ),
+            (
+                "2 hours a week in 2 years in days",
+                1,
+                "8.7 days",
+            ),
+            (
+                "8 hours a day in a year in months",
+                0,
+                "4 months",
+            ),
+            (
+                "5 days a week in a decade in years",
+                666,
+                "7.123287671232877 years",
+            ),
+        ]
+
+        for expression, rounding_decimals, expected in test_cases:
+            with self.subTest(
+                expression=expression,
+                rounding_decimals=rounding_decimals,
+                expected=expected,
+            ):
+                self.assertEqual(parse(expression, rounding_decimals), expected)

@@ -38,7 +38,7 @@ def validate_parts(
     )
 
 
-def parse(expression: str) -> str:
+def parse(expression: str, rounding_decimals: int | None = None) -> str:
     original, in_time, comparison, resolution = validate_parts(expression)
     result = transform(
         TimeExpressionRequst(
@@ -49,4 +49,12 @@ def parse(expression: str) -> str:
         resolution,
     )
 
-    return f"{result.amount} {result.unit.value}"
+    amount = (
+        round(result.amount, rounding_decimals) if rounding_decimals else result.amount
+    )
+
+    # Indicating zero decimals should result in non-float value
+    if rounding_decimals == 0:
+        amount = int(amount)
+
+    return f"{amount} {result.unit.value}"
