@@ -14,6 +14,13 @@ class UnitOfTime(str, Enum):
     YEARS = "years"
     DECADES = "decades"
 
+    @staticmethod
+    def from_str(request: str) -> "UnitOfTime":
+        if request[-1] != "s":
+            request = f"{request}s"
+
+        return UnitOfTime(request)
+
 
 TIME_EXPRESSION_MULTIPLIERS: Final[dict[tuple[UnitOfTime, UnitOfTime], float]] = {
     (UnitOfTime.SECONDS, UnitOfTime.SECONDS): 1,
