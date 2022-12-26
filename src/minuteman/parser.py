@@ -14,7 +14,7 @@ def validate_parts(
     assert len(raw_parts) == 9
 
     # Expressions should always contain certain in-betweens
-    assert raw_parts[2] == "a"
+    assert raw_parts[2] in ["a", "per"]
     assert raw_parts[4] == "in"
     assert raw_parts[7] == "in"
 
