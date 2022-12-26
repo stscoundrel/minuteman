@@ -86,6 +86,21 @@ class TestMinutemanCore(TestCase):
                 ),
                 TimeExpression(amount=7.123287671232877, unit=UnitOfTime.YEARS),
             ),
+            # 3 months a year in 8 decades in years
+            (
+                (
+                    TimeExpressionRequst(
+                        original=TimeExpression(
+                            amount=3,
+                            unit=UnitOfTime.MONTHS,
+                        ),
+                        in_time=TimeExpression(amount=1, unit=UnitOfTime.YEARS),
+                        comparison=TimeExpression(amount=8, unit=UnitOfTime.DECADES),
+                    ),
+                    UnitOfTime.YEARS,
+                ),
+                TimeExpression(amount=20.0, unit=UnitOfTime.YEARS),
+            ),
         ]
 
         for args, expected in test_cases:

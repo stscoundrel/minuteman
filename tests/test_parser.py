@@ -59,6 +59,8 @@ class TestMinutemanCore(TestCase):
                 666,
                 "7.123287671232877 years",
             ),
+            ("1 hour per day in a decade in weeks", 2, "21.73 weeks"),
+            ("10 months a year in 4 decades in years", 2, "33.33 years"),
         ]
 
         for expression, rounding_decimals, expected in test_cases:
