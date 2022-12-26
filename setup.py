@@ -4,10 +4,10 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="projectname",
-    version="1.0.0",
+    name="minuteman",
+    version="0.1.0",
     author="stscoundrel",
-    description="Project desc",
+    description="Represent and transform expressions of time eg. '5 minutes a day in a year in days' = 1.27 days.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/stscoundrel/python-template",
